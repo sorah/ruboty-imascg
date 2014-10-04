@@ -15,11 +15,14 @@ module Ruboty
       on(/imascg flush cache/, name: 'imascg_flush', description: 'flush imascg query cache')
 
       def imascg(message)
-        response = ppdb_query(message[:query])
-
         mode = message[:mode]
         mode = 'l' if !mode || mode.empty?
         mode = 'l_noframe' if mode == 'noframe'
+
+        return if mode == 'flush' && message[:query] == 'cache'
+
+        response = ppdb_query(message[:query])
+
 
         if response['message']
           message.reply response['message']
