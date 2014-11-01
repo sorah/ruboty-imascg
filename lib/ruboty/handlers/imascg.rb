@@ -37,7 +37,8 @@ module Ruboty
         if mode == 'list'
           message.reply response['data'].map{ |_| _['Name'] }.join("\n")
         else
-          card = response['data'].sample
+          card =  response['data'].find { |card| card['Name'] == message[:query] } \
+               || response['data'].sample
           message.reply card['Name']
           message.reply IMG_URL % [mode, card['ID']]
         end
