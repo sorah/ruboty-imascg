@@ -1,6 +1,7 @@
 require "ruboty-imascg/version"
 require 'ruboty/handlers/base'
 require 'net/http'
+require 'net/https'
 require 'json'
 require 'uri'
 
@@ -8,7 +9,7 @@ module Ruboty
   module Handlers
     class Imascg < Base
       VERSION = RubotyImascg::VERSION
-      PPDB_API = URI("http://ppdb.sekai.in/api/2/idol.json")
+      PPDB_API = URI("https://ppdb.momoka-sakurai.com/api/2/idol.json")
       IMG_URL = "http://125.6.169.35/idolmaster/image_sp/card/%s/%s.jpg"
 
       on(/imascg(?:\s+?(?<mode>.+?))?(?:\s+?me)?\s+(?<query>.+)$/, name: 'imascg', description: 'find imascg cards')
